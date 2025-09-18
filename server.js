@@ -1,3 +1,4 @@
+// server.js
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -17,7 +18,10 @@ app.use("/api/riders", riderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/rides", rideRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Backend running on port ${PORT}`);
+app.get("/", (req, res) => {
+  res.send("🚀 Rider Portal Backend is running!");
+});
+
+app.get("/healthz", (req, res) => {
+  res.status(200).send("OK");
 });
